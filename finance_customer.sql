@@ -70,7 +70,7 @@ where addr_state = 'NY';
 
 -- first find how many people take loan in NY after that find there id and find customer id whom take Mortage and find highest annual_inc
 
-select count(addr_state)
+select count(addr_state)as counts, addr_state
 from finance_customer
 where addr_state = 'NY'
 group by addr_state;
@@ -83,3 +83,10 @@ select customer_id , annual_inc
 from finance_customer
 where annual_inc = (select max(annual_inc) 
 					from finance_customer);
+                    
+select addr_state , count(addr_state)
+from finance_customer
+group by addr_state;
+-- try to find all addr_state and then find avg avg_cur_bal
+select avg(avg_cur_bal)
+from finance_customer;
