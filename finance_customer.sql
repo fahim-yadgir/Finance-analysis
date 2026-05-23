@@ -30,3 +30,37 @@ LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/finance_customer
    IGNORE 1 ROWS;
 
 select * from finance_customer;
+
+select count(emp_length) as find_none
+from finance_customer
+where emp_length = 'none'
+group by emp_length;
+
+select customer_id , zip_code
+from finance_customer
+where zip_code = '010xx';
+
+select customer_id , zip_code
+from finance_customer
+where zip_code = '107xx';
+
+select * 
+from finance_customer
+WHERE emp_title = 'none'
+  or emp_length = 'none'
+  or home_ownership = 'none'
+  or annual_inc = 'none'
+  or annual_inc_joint = 'none'
+  or verification_status = 'none'
+  or zip_code = 'none'
+  or addr_state = 'none'
+  or avg_cur_bal = 'none'
+  or Tot_cur_bal = 'none';
+  
+  
+select customer_id , verification_status
+from finance_customer
+where verification_status = 'Not Verified'
+group by  customer_id, verification_status;
+  
+  
