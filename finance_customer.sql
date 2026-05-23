@@ -64,3 +64,22 @@ where verification_status = 'Not Verified'
 group by  customer_id, verification_status;
   
   
+select customer_id , emp_title , emp_length , addr_state
+from finance_customer
+where addr_state = 'NY';
+
+-- first find how many people take loan in NY after that find there id and find customer id whom take Mortage and find highest annual_inc
+
+select count(addr_state)
+from finance_customer
+where addr_state = 'NY'
+group by addr_state;
+
+select customer_id , home_ownership
+from finance_customer
+where home_ownership = 'Mortgage';
+
+select customer_id , annual_inc
+from finance_customer
+where annual_inc = (select max(annual_inc) 
+					from finance_customer);
