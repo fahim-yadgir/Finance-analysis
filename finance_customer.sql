@@ -90,3 +90,7 @@ group by addr_state;
 -- try to find all addr_state and then find avg avg_cur_bal
 select avg(avg_cur_bal)
 from finance_customer;
+
+select customer_id ,Tot_cur_bal
+from finance_customer
+where Tot_cur_bal = (select max(Tot_cur_bal)from finance_customer)
