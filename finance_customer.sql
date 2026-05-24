@@ -132,3 +132,25 @@ select * from finance_customer
 where addr_state = 'MA';
 
 select * from addr_state_MA;
+
+-- now find the highest annual income for each verification_status after that find minimum avg cur bal and then find avg cur_bal state_wise 
+
+select customer_id , verification_status,annual_inc
+from finance_customer f1
+where annual_inc = (select max(f2.annual_inc)from finance_customer f2
+					where f1.verification_status = f2.verification_status);
+                    
+				
+select customer_id , emp_title , verification_status , annual_inc , avg_cur_bal
+from finance_customer
+where avg_cur_bal = (select min(avg_cur_bal)from finance_customer);
+
+
+select addr_state , avg_cur_bal
+from finance_customer f1
+where avg_cur_bal = (select avg(f2.avg_cur_bal)from finance_customer f2
+					where f1.addr_state = f2.addr_state);
+
+select addr_state , avg(avg_cur_bal)
+from finance_customer
+group by addr_state;
