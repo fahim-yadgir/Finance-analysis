@@ -117,3 +117,18 @@ end $$
 delimiter ;
 
 call Mortgage;
+
+-- first create a view for Verification_status_verified after that creat view for addr_state_MA
+
+create view Verification_status_verified as
+select customer_id , home_ownership , annual_inc , verification_status
+from finance_customer
+where verification_status = 'Verified';
+
+select * from Verification_status_verified;
+
+create view addr_state_MA as
+select * from finance_customer
+where addr_state = 'MA';
+
+select * from addr_state_MA;
