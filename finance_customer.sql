@@ -90,7 +90,30 @@ group by addr_state;
 -- try to find all addr_state and then find avg avg_cur_bal
 select avg(avg_cur_bal)
 from finance_customer;
-
+-- first change a datatype of Tot_cur_bal and convert in begint and then find highest Tot_cur_bal with there name 
 select customer_id ,Tot_cur_bal
 from finance_customer
-where Tot_cur_bal = (select max(Tot_cur_bal)from finance_customer)
+where Tot_cur_bal = (select max(Tot_cur_bal)from finance_customer);
+
+
+-- find highest Tot_cur_bal where verification_status is verified after that find annual_inc = noneafter that create procedure for See the result Mortgage
+
+select customer_id , verification_status , Tot_cur_bal
+from finance_customer
+where Tot_cur_bal = (select max(Tot_cur_bal)from finance_customer
+						where verification_status = 'Verified');
+                        
+
+select customer_id , annual_inc
+from finance_customer
+where annual_inc = 'none';
+
+delimiter $$
+create procedure Mortgage()
+begin
+select * from finance_customer
+where home_ownership = 'Mortgage';
+end $$
+delimiter ;
+
+call Mortgage;
