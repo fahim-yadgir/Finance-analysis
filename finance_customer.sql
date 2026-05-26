@@ -154,3 +154,21 @@ where avg_cur_bal = (select avg(f2.avg_cur_bal)from finance_customer f2
 select addr_state , avg(avg_cur_bal)
 from finance_customer
 group by addr_state;
+
+select home_ownership , max(avg_cur_bal)
+from finance_customer
+group by home_ownership;
+
+select customer_id , emp_length,annual_inc
+from finance_customer
+where emp_length != 'none';
+
+select zip_code , count(zip_code)
+from finance_customer
+group by zip_code
+having count(zip_code) >1;
+
+select customer_id,annual_inc as second_highest_Salary
+from finance_customer
+where annual_inc = (select max(annual_inc)from finance_customer
+					where annual_inc < (select max(annual_inc)from finance_customer));
