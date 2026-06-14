@@ -18,4 +18,5 @@ alter table finance_customer
 modify avg_cur_bal bigint;
 
 select * from finance_customer
-where avg_cur_bal = (select max(avg_cur_bal)from finance_customer);
+where avg_cur_bal = (select max(avg_cur_bal)from finance_customer 
+					where avg_cur_bal < (select max(avg_cur_bal) from finance_customer));

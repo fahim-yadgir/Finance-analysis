@@ -180,3 +180,9 @@ where customer_id != 'none' and emp_title != 'none'  and experienc != 'none' and
 drop view Full_details;
 
 select * from Full_details;
+
+select addr_state , count(*)as customer_count
+from finance_customer
+group by addr_state;
+
+call Mortgage;
