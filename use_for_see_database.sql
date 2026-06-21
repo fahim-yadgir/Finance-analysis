@@ -20,3 +20,10 @@ modify avg_cur_bal bigint;
 select * from finance_customer
 where avg_cur_bal = (select max(avg_cur_bal)from finance_customer 
 					where avg_cur_bal < (select max(avg_cur_bal) from finance_customer));
+                    
+                    
+select *,
+	sum(Tot_cur_bal) over (partition by home_ownership order by customer_id)as cumulative_sum_home_ownership
+from finance_customer
+where home_ownership = 'Rent';
+
