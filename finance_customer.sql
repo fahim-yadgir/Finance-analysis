@@ -190,3 +190,8 @@ call Mortgage;
 select * ,
 		sum(Tot_cur_bal) over(order by customer_id)as cumulative_Tot_cur_bal
 from finance_customer;
+
+select *,
+		rank() over(order by Tot_cur_bal)as rank_wise
+from finance_customer;
+
