@@ -186,3 +186,7 @@ from finance_customer
 group by addr_state;
 
 call Mortgage;
+
+select * ,
+		sum(Tot_cur_bal) over(order by customer_id)as cumulative_Tot_cur_bal
+from finance_customer;
