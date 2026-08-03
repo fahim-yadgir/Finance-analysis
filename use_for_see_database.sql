@@ -27,3 +27,17 @@ select *,
 from finance_customer
 where home_ownership = 'Rent';
 
+delimiter $$
+create procedure Update_verification 
+(
+in fc_id varchar(100),
+in verification varchar(100)
+)
+begin
+update finance_customer
+set verification_status = verification
+where customer_id = fc_id;
+end $$
+drop procedure Update_verification;
+
+call Update_verification('customer 2','Verified');
